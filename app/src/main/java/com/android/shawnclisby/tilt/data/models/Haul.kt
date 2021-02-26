@@ -8,21 +8,17 @@ import java.util.*
 data class Haul(
     val carrier: Carrier,
     val publishedDate: Date
-)
-{
-    fun formatPublishDate(): String {
-        val format = DateFormat.getDateInstance(MEDIUM)
-        return format.format(Calendar.getInstance().setTime(publishedDate))
-    }
+) {
 
-    fun formatOpenDate(): String {
-        val format = DateFormat.getDateInstance(LONG)
-        return format.format(Calendar.getInstance().setTime(carrier.openDate))
-    }
+    val formattedPublishDate: String
+        get() = DateFormat.getDateInstance(MEDIUM).format(publishedDate)
 
-    fun formatCloseDate(): String {
-        val format = DateFormat.getDateInstance(LONG)
-        return format.format(Calendar.getInstance().setTime(carrier.closeDate))
-    }
+    val formattedOpenDate: String
+        get() = DateFormat.getDateInstance(LONG).format(carrier.openDate)
+
+
+    val formattedCloseDate: String
+        get() = DateFormat.getDateInstance(LONG).format(carrier.closeDate)
+
 
 }

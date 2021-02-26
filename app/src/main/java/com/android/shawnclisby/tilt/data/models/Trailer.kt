@@ -5,3 +5,7 @@ data class Trailer(
     val description: String,
     val notes:String?
 )
+{
+    val formattedWeight: String
+        get() = String.format("%,d lbs",weight)
+}
