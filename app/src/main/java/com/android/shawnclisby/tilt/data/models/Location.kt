@@ -1,10 +1,13 @@
 package com.android.shawnclisby.tilt.data.models
 
 import com.android.shawnclisby.tilt.LocationFinder
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Location(
-    val originCity: Map<String, Double>,
-    val destinationCity: Map<String, Double>,
+    @Json(name = "origin_city") val originCity: Map<String, Double>,
+    @Json(name = "destination_city") val destinationCity: Map<String, Double>,
 ) {
 
     val oAddress: String

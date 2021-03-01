@@ -16,14 +16,21 @@ class MainActivity : AppCompatActivity() {
         viewModels = ViewModelProvider(this).get(HaulViewModel::class.java)
 
         viewModels.haulList.observe(this) { hauls ->
-            println("Live City: ${hauls[0].carrier.locations.oCity}")
-            println("Live City: ${hauls[0].carrier.locations.dCity}")
-            println("Live Address: ${hauls[0].carrier.locations.oAddress}")
-            println("Live Address: ${hauls[0].carrier.locations.dAddress}")
-            println("Live State: ${hauls[0].carrier.locations.oState}")
-            println("Live State: ${hauls[0].carrier.locations.dState}")
-            println("Live Postal Code: ${hauls[0].carrier.locations.oPostalCode}")
-            println("Live Postal Code: ${hauls[0].carrier.locations.dPostalCode}")
+            hauls?.forEach { haul ->
+                println("Live Origin City: ${haul.carrier.locations.oCity}")
+                println("Live Origin Address: ${haul.carrier.locations.oAddress}")
+
+                println("Live Destination City: ${haul.carrier.locations.dCity}")
+                println("Live Destination Address: ${haul.carrier.locations.dAddress}")
+
+                println("Live Published Date: ${haul.formattedPublishDate}")
+                println("Live Open Date: ${haul.formattedOpenDate}")
+                println("Live Close Date: ${haul.formattedCloseDate}")
+
+                println("Live Weight: ${haul.carrier.trailer.weight}")
+                println("Live Description: ${haul.carrier.trailer.description}")
+                println("Live Notes: ${haul.carrier.trailer.notes}")
+            }
         }
     }
 }
