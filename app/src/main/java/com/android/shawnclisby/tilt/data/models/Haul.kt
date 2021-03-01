@@ -1,28 +1,27 @@
 package com.android.shawnclisby.tilt.data.models
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import java.text.DateFormat
 import java.text.DateFormat.LONG
 import java.text.DateFormat.MEDIUM
 import java.util.*
 
+@JsonClass(generateAdapter = true)
 data class Haul(
     val carrier: Carrier,
-    val publishedDate: Date
-)
-{
-    fun formatPublishDate(): String {
-        val format = DateFormat.getDateInstance(MEDIUM)
-        return format.format(Calendar.getInstance().setTime(publishedDate))
-    }
+    @Json(name = "publish_date") val publishedDate: Long
+) {
 
-    fun formatOpenDate(): String {
-        val format = DateFormat.getDateInstance(LONG)
-        return format.format(Calendar.getInstance().setTime(carrier.openDate))
-    }
+    val formattedPublishDate: String
+        get() = DateFormat.getDateInstance(MEDIUM).format(Date(publishedDate))
 
-    fun formatCloseDate(): String {
-        val format = DateFormat.getDateInstance(LONG)
-        return format.format(Calendar.getInstance().setTime(carrier.closeDate))
-    }
+    val formattedOpenDate: String
+        get() = DateFormat.getDateInstance(LONG).format(Date(carrier.openDate))
+
+
+    val formattedCloseDate: String
+        get() = DateFormat.getDateInstance(LONG).format(Date(carrier.closeDate))
+
 
 }
