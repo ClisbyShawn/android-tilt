@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface UserService {
 
-    @GET("me")
+    @GET("user/me")
     suspend fun getUser(): List<User>
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.android.shawnclisby.tilt.data.HaulViewModel
+import com.android.shawnclisby.tilt.data.UserViewModel
 import com.android.shawnclisby.tilt.databinding.FragmentHaulDetailBinding
 
 class HaulDetailFragment : Fragment() {
@@ -14,6 +15,8 @@ class HaulDetailFragment : Fragment() {
     private var _binding: FragmentHaulDetailBinding? = null
     private val binding get() = _binding!!
     private val haulViewModel: HaulViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

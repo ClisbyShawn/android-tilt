@@ -17,4 +17,6 @@ object RetrofitService {
         .build()
 
     val haulService: HaulService = retrofit.create(HaulService::class.java)
+
+    val userService: UserService = retrofit.create(UserService::class.java)
 }

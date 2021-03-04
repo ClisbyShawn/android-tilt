@@ -1,4 +1,4 @@
-package com.android.shawnclisby.tilt.data
+package com.android.shawnclisby.tilt.data.repository
 
 import com.android.shawnclisby.tilt.data.models.Haul
 import com.android.shawnclisby.tilt.network.HaulService

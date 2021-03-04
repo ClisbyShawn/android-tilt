@@ -10,6 +10,15 @@ data class User(
     @Json(name = "last_name") val lastName: String,
     @Json(name = "total_miles") val totalMiles: Int,
     @Json(name = "total_earnings") val totalEarnings: Int,
-    @Json(name = "completed_jobs") val completedNumber: Int,
+    @Json(name = "completed_jobs") val completedJobs: Int,
     @Json(name = "current_haul") val haulId: String?
-)
+) {
+    val formatCompletedJobs: String
+        get() = "$completedJobs"
+
+    val formatMilesDriven: String
+        get() = String.format("%,d", totalMiles)
+
+    val formatEarnings: String
+        get() = String.format("$%,d", totalEarnings)
+}

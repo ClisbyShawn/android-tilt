@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.shawnclisby.tilt.data.models.Haul
+import com.android.shawnclisby.tilt.data.repository.HaulRepository
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
@@ -17,6 +18,9 @@ class HaulViewModel : ViewModel() {
 
     private val _detailHaul: MutableLiveData<Haul?> = MutableLiveData(null)
     val detailHaul: LiveData<Haul?> = _detailHaul
+
+    private val _currentHaul: MutableLiveData<Haul?> = MutableLiveData(null)
+    val currentHaul: LiveData<Haul?> = _currentHaul
 
     init {
         fetchHaulData()
@@ -37,6 +41,12 @@ class HaulViewModel : ViewModel() {
 
     fun onSelectedHaul(haul: Haul) {
         _detailHaul.value = haul
+    }
+
+    fun hasCurrentHaul(haulId: String) {
+        val currentHaul = haulList.value?.filter { haul -> haul.id == haulId }
+        if (currentHaul.isNullOrEmpty()) _currentHaul.postValue(null)
+        else _currentHaul.postValue(currentHaul[0])
     }
 
 }

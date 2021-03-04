@@ -7,6 +7,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.shawnclisby.tilt.data.HaulViewModel
+import com.android.shawnclisby.tilt.data.UserViewModel
 import com.android.shawnclisby.tilt.data.models.Haul
 import com.android.shawnclisby.tilt.databinding.FragmentHaulBinding
 
@@ -15,6 +16,7 @@ class HaulFragment : Fragment(), HaulListAdapter.OnListSelection {
     private var _binding: FragmentHaulBinding? = null
     private val binding get() = _binding!!
     private val haulViewModel: HaulViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,8 +26,8 @@ class HaulFragment : Fragment(), HaulListAdapter.OnListSelection {
         _binding = FragmentHaulBinding.inflate(inflater, container, false)
         binding.apply {
 
-            val haulAdapter = HaulListAdapter(requireContext(),this@HaulFragment)
-
+            //region HAUL RELATED DATA
+            val haulAdapter = HaulListAdapter(requireContext(), this@HaulFragment)
             //Pull to Refresh
             refreshHaulNetworkCall.setOnRefreshListener {
                 haulViewModel.fetchHaulData()
@@ -42,6 +44,34 @@ class HaulFragment : Fragment(), HaulListAdapter.OnListSelection {
             haulViewModel.haulList.observe(viewLifecycleOwner) { list ->
                 haulAdapter.submitList(list)
             }
+
+            //endregion HAUL RELATED DATA
+
+            //region USER RELATED DATA
+            userViewModel.user.observe(viewLifecycleOwner) { authUser ->
+                authUser?.let { currentUser ->
+                    tvHaulUserCompleted.text = currentUser.formatCompletedJobs
+                    tvHaulUserEarnings.text = currentUser.formatEarnings
+                    tvHaulUserMileage.text = currentUser.formatMilesDriven
+                    currentUser.haulId?.let { id ->
+                        haulViewModel.hasCurrentHaul(id)
+                    }
+                }
+            }
+
+            //endregion USER RELATED DATA
+
+            //region HAUL AND USER RELATED DATA
+            haulViewModel.currentHaul.observe(viewLifecycleOwner) { currentHaulJob ->
+                currentHaulJob?.let { haulJob ->
+                    containerHaulCurerntJob.visibility = View.VISIBLE
+                    viewHaulBottomContainerDivider.visibility = View.VISIBLE
+                    tvHaulOriginCity.text = haulJob.carrier.locations.oCity
+                    tvHaulDestinationCity.text = haulJob.carrier.locations.dCity
+                }
+            }
+
+            //endregion HAUL AND USER RELATED DATA
         }
 
         return binding.root

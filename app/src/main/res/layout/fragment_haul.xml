@@ -42,29 +42,87 @@
         android:weightSum="3"
         app:layout_constraintTop_toBottomOf="@id/view_haul_top_divider">
 
-        <TextView
-            android:id="@+id/tv_haul_user_completed"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
             android:layout_weight="1"
-            tools:text="This is some fake text about the users completed jobs" />
+            android:orientation="vertical"
+            android:weightSum="2">
 
-        <TextView
-            android:id="@+id/tv_haul_user_mileage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="1"
-            tools:text="This is some fake text about the users mileage" />
+            <TextView
+                android:id="@+id/tv_haul_user_completed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="15" />
 
-        <TextView
-            android:id="@+id/tv_haul_user_earnings"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:text="have been completed this year."
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
             android:layout_weight="1"
-            tools:text="This is some fake text about users total earnings" />
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tv_haul_user_mileage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="12,5400" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:text="miles have been driven this year."
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tv_haul_user_earnings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="$25,680" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:text="has been earned so far this year."
+                android:textAlignment="center" />
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -82,6 +140,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/view_haul_bottom_divider">
 
         <View
@@ -161,9 +220,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
+        android:id="@+id/view_haul_bottom_container_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#75030000"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/container_haul_curernt_job" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
