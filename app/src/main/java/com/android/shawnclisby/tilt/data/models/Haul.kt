@@ -3,8 +3,8 @@ package com.android.shawnclisby.tilt.data.models
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import java.text.DateFormat
-import java.text.DateFormat.LONG
-import java.text.DateFormat.MEDIUM
+import java.text.DateFormat.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 @JsonClass(generateAdapter = true)
@@ -23,6 +23,18 @@ data class Haul(
 
     val formattedCloseDate: String
         get() = DateFormat.getDateInstance(LONG).format(Date(carrier.closeDate * 1000L))
+
+    val formattedCloseDay: String
+        get() = {
+            val format = SimpleDateFormat("d")
+            format.format(Date(carrier.closeDate * 1000L))
+        }()
+
+    val formattedCloseMonth: String
+        get() = {
+            val format = SimpleDateFormat("MMM")
+            "${format.format(Date(carrier.closeDate * 1000L))}."
+        }()
 
 
 }

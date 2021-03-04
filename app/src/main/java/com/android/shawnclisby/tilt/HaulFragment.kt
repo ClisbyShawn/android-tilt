@@ -68,10 +68,16 @@ class HaulFragment : Fragment(), HaulListAdapter.OnListSelection {
                     viewHaulBottomContainerDivider.visibility = View.VISIBLE
                     tvHaulOriginCity.text = haulJob.carrier.locations.oCity
                     tvHaulDestinationCity.text = haulJob.carrier.locations.dCity
+                    tvHaulDay.text = haulJob.formattedCloseDay
+                    tvHaulMonth.text = haulJob.formattedCloseMonth
                 }
             }
 
             //endregion HAUL AND USER RELATED DATA
+
+            ivHaulUser.setOnClickListener {
+                haulViewModel.newHaulItem()
+            }
         }
 
         return binding.root
@@ -81,27 +87,6 @@ class HaulFragment : Fragment(), HaulListAdapter.OnListSelection {
         super.onDestroyView()
         _binding = null
     }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setHasOptionsMenu(true)
-//    }
-//
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.haul_menu, menu)
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.action_new_haul -> {
-//                haulViewModel.newHaulItem()
-//                true
-//            }
-//
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 
     override fun onSelected(haul: Haul) {
         haulViewModel.onSelectedHaul(haul)

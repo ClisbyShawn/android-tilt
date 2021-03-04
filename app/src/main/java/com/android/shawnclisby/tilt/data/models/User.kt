@@ -11,7 +11,7 @@ data class User(
     @Json(name = "total_miles") val totalMiles: Int,
     @Json(name = "total_earnings") val totalEarnings: Int,
     @Json(name = "completed_jobs") val completedJobs: Int,
-    @Json(name = "current_haul") val haulId: String?
+    @Json(name = "current_haul") var haulId: String?
 ) {
     val formatCompletedJobs: String
         get() = "$completedJobs"

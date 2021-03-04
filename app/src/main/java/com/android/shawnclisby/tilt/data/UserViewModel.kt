@@ -13,12 +13,18 @@ class UserViewModel : ViewModel() {
 
     private val userRepo = UserRepository()
 
-    private val _user: MutableLiveData<User?> = MutableLiveData(null)
+    private var _user: MutableLiveData<User?> = MutableLiveData(null)
     val user: LiveData<User?> = _user
 
     init {
         viewModelScope.launch(IO) {
             _user.postValue(userRepo.fetchUser()[0])
         }
+    }
+
+    fun takeHaulJob(haulId:String) {
+        val user = _user.value!!
+        user.haulId = haulId
+        _user.postValue(user)
     }
 }
