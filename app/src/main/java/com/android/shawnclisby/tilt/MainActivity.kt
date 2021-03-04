@@ -14,5 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         FirebaseMessaging.getInstance()
             .subscribeToTopic(TOPIC)
+
+        supportActionBar?.hide()
     }
 }
