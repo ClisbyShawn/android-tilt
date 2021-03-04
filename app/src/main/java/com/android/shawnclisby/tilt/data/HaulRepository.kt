@@ -9,4 +9,6 @@ class HaulRepository(
 ) {
 
     suspend fun fetchHauls(): List<Haul> = haulService.getHauls()
+
+    suspend fun newHaulItem() = haulService.newHaul()
 }
