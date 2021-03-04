@@ -9,6 +9,7 @@ import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class Haul(
+    @Json(name = "_id")val id:String,
     val carrier: Carrier,
     @Json(name = "publish_date") val publishedDate: Long
 ) {

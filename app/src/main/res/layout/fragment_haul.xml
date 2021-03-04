@@ -165,7 +165,7 @@
         android:layout_height="1dp"
         android:background="#75030000"
         app:layout_constraintTop_toBottomOf="@id/container_haul_curernt_job" />
-    
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_haul_network_call"
         android:layout_width="match_parent"
