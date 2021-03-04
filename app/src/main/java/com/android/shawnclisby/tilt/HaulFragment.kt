@@ -23,6 +23,9 @@ class HaulFragment : Fragment() {
     ): View {
         _binding = FragmentHaulBinding.inflate(inflater, container, false)
         binding.apply {
+
+            val haulAdapter = HaulListAdapter(requireContext())
+
             //Pull to Refresh
             refreshHaulNetworkCall.setOnRefreshListener {
                 haulViewModel.getHaulData()
@@ -31,7 +34,11 @@ class HaulFragment : Fragment() {
             //RecyclerView
             recyclerHaulList.apply {
                 layoutManager = LinearLayoutManager(requireContext())
-                
+                adapter = haulAdapter
+            }
+
+            haulViewModel.haulList.observe(viewLifecycleOwner) { list ->
+                haulAdapter.submitList(list)
             }
         }
 
