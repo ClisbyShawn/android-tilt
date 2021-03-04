@@ -23,6 +23,12 @@ class HaulDetailFragment : Fragment() {
         _binding = FragmentHaulDetailBinding.inflate(inflater, container, false)
         binding.apply {
 
+            haulViewModel.detailHaul.observe(viewLifecycleOwner) { haul ->
+                haul?.let {
+                    tvDetailOrigin.text =
+                        "${it.carrier.locations.oCity}, ${it.carrier.locations.oState}"
+                }
+            }
 
         }
         return binding.root

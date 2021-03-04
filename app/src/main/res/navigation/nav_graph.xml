@@ -6,7 +6,15 @@
     <fragment
         android:id="@+id/haulFragment"
         android:name="com.android.shawnclisby.tilt.HaulFragment"
-        android:label="HaulFragment" />
+        android:label="HaulFragment" >
+        <action
+            android:id="@+id/action_haulFragment_to_haulDetailFragment"
+            app:destination="@id/haulDetailFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/haulDetailFragment"
         android:name="com.android.shawnclisby.tilt.HaulDetailFragment"

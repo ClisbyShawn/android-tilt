@@ -15,6 +15,9 @@ class HaulViewModel : ViewModel() {
     private val _haulList: MutableLiveData<List<Haul>?> = MutableLiveData(null)
     val haulList: LiveData<List<Haul>?> = _haulList
 
+    private val _detailHaul: MutableLiveData<Haul?> = MutableLiveData(null)
+    val detailHaul: LiveData<Haul?> = _detailHaul
+
     init {
         fetchHaulData()
     }
@@ -30,6 +33,10 @@ class HaulViewModel : ViewModel() {
             repo.newHaulItem()
             _haulList.postValue(repo.fetchHauls())
         }
+    }
+
+    fun onSelectedHaul(haul: Haul) {
+        _detailHaul.value = haul
     }
 
 }

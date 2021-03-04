@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.shawnclisby.tilt.data.HaulViewModel
+import com.android.shawnclisby.tilt.data.models.Haul
 import com.android.shawnclisby.tilt.databinding.FragmentHaulBinding
 
-class HaulFragment : Fragment() {
+class HaulFragment : Fragment(), HaulListAdapter.OnListSelection {
 
     private var _binding: FragmentHaulBinding? = null
     private val binding get() = _binding!!
@@ -22,7 +24,7 @@ class HaulFragment : Fragment() {
         _binding = FragmentHaulBinding.inflate(inflater, container, false)
         binding.apply {
 
-            val haulAdapter = HaulListAdapter(requireContext())
+            val haulAdapter = HaulListAdapter(requireContext(),this@HaulFragment)
 
             //Pull to Refresh
             refreshHaulNetworkCall.setOnRefreshListener {
@@ -69,5 +71,10 @@ class HaulFragment : Fragment() {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onSelected(haul: Haul) {
+        haulViewModel.onSelectedHaul(haul)
+        findNavController().navigate(R.id.action_haulFragment_to_haulDetailFragment)
     }
 }
