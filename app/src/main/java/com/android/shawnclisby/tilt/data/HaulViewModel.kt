@@ -9,11 +9,14 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
 class HaulViewModel : ViewModel() {
-    
+
     private val repo: HaulRepository = HaulRepository()
 
     private val _haulList: MutableLiveData<List<Haul>?> = MutableLiveData(null)
     val haulList: LiveData<List<Haul>?> = _haulList
+
+    private val _detailHaul: MutableLiveData<Haul?> = MutableLiveData(null)
+    val detailHaul: LiveData<Haul?> = _detailHaul
 
     init {
         fetchHaulData()
@@ -23,6 +26,17 @@ class HaulViewModel : ViewModel() {
         viewModelScope.launch(IO) {
             _haulList.postValue(repo.fetchHauls())
         }
+    }
+
+    fun newHaulItem() {
+        viewModelScope.launch(IO) {
+            repo.newHaulItem()
+            _haulList.postValue(repo.fetchHauls())
+        }
+    }
+
+    fun onSelectedHaul(haul: Haul) {
+        _detailHaul.value = haul
     }
 
 }
