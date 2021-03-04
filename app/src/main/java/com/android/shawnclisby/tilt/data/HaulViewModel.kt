@@ -17,10 +17,13 @@ class HaulViewModel : ViewModel() {
     val haulList: LiveData<List<Haul>?> = _haulList
 
     init {
+        getHaulData()
+    }
+
+    fun getHaulData() {
         viewModelScope.launch(IO) {
             _haulList.postValue(repo.fetchHauls())
         }
     }
-
 
 }
