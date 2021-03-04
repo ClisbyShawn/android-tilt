@@ -28,7 +28,9 @@ class HaulFragment : Fragment() {
 
             //Pull to Refresh
             refreshHaulNetworkCall.setOnRefreshListener {
-                haulViewModel.getHaulData()
+                haulViewModel.fetchHaulData()
+
+                refreshHaulNetworkCall.isRefreshing = false
             }
 
             //RecyclerView

@@ -14,14 +14,14 @@ data class Haul(
 ) {
 
     val formattedPublishDate: String
-        get() = DateFormat.getDateInstance(MEDIUM).format(Date(publishedDate))
+        get() = DateFormat.getDateInstance(MEDIUM).format(Date(publishedDate * 1000L))
 
     val formattedOpenDate: String
-        get() = DateFormat.getDateInstance(LONG).format(Date(carrier.openDate))
+        get() = DateFormat.getDateInstance(LONG).format(Date(carrier.openDate * 1000L))
 
 
     val formattedCloseDate: String
-        get() = DateFormat.getDateInstance(LONG).format(Date(carrier.closeDate))
+        get() = DateFormat.getDateInstance(LONG).format(Date(carrier.closeDate * 1000L))
 
 
 }

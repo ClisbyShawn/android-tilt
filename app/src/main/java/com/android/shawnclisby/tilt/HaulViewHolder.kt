@@ -11,9 +11,12 @@ class HaulViewHolder(private val binding: ViewHolderHaulBinding) :
         binding.apply {
             tvHolderOrigin.text =
                 "${haul.carrier.locations.oCity}, ${haul.carrier.locations.oState}"
+
             tvHolderDestination.text =
                 "${haul.carrier.locations.dCity}, ${haul.carrier.locations.dState}"
+
             tvHolderPublished.text = haul.formattedPublishDate
+
             tvHolderWeight.text = haul.carrier.trailer.formattedWeight
         }
     }
