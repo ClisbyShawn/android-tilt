@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:text="have been completed this year."
+                android:text="@string/jobs_have_been_completed_this_year"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:text="miles have been driven this year."
+                android:text="@string/miles_have_been_driven_this_year"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:text="has been earned so far this year."
+                android:text="@string/has_been_earned_so_far_this_year"
                 android:textAlignment="center" />
         </LinearLayout>
 

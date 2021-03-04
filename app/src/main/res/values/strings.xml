@@ -3,4 +3,7 @@
     <string name="new_haul">New Haul</string>
     <string name="direction_arrow"><![CDATA[-->]]></string>
     <string name="current_haul">Current Haul</string>
+    <string name="jobs_have_been_completed_this_year">jobs have been completed this year.</string>
+    <string name="miles_have_been_driven_this_year">miles have been driven this year.</string>
+    <string name="has_been_earned_so_far_this_year">has been earned so far this year.</string>
 </resources>
