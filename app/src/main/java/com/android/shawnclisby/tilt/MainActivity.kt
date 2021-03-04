@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.android.shawnclisby.tilt.data.HaulViewModel
+import com.google.firebase.messaging.FirebaseMessaging
+private const val TOPIC = "/topics/hauls"
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        FirebaseMessaging.getInstance()
+            .subscribeToTopic(TOPIC)
 
         viewModels = ViewModelProvider(this).get(HaulViewModel::class.java)
 
